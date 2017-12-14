@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no,email=no,adress=no">
+		<meta name="full-screen" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<title>POSP-D0D1-公众号</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-tap-highlight-color: transparent;
+			}
+			
+			body, div, p, ul, ol, li, dl, dt, dd, form, input, table, img, h1, h2, h3, h4, h5, h6, header, section, footer, nav, figure, figcaption, article {
+				margin: 0;
+				padding: 0;
+			}
+			
+			header, section, footer, nav, figure, figcaption, article, menu {
+				display: block;
+			}
+			
+			body {
+				font-size: 12px;
+				font-family: "微软雅黑";
+			}
+			
+			ul, li, ol {
+				list-style: none;
+			}
+			
+			a, a:hover {
+				text-decoration: none;
+				color: #393737;
+			}
+			
+			img {
+				border: none;
+				display: inline-block;
+				vertical-align: top;
+			}
+			
+			h1, h2, h3, h4, h5, h6 {
+				font-size: 0.38rem;
+				font-weight: normal;
+			}
+			
+			em, i {
+				font-style: normal;
+			}
+			
+			.l, .left {
+				float: left;
+				display: inline-block;
+			}
+			
+			.r, .right {
+				float: right;
+				display: inline-block;
+			}
+			
+			.clearfix:after {
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				overflow: hidden;
+				clear: both;
+			}
+			
+			header, nav, section, footer {
+				min-width: 320px;
+			}
+			
+			.w280 {
+				min-width: 280px;
+				margin: 0 2%;
+			}
+			
+			.w300 {
+				min-width: 300px;
+				margin: 0 3%;
+			}
+			
+			*, *:before, *:after {
+				-webkit-box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			
+			body, html {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+				font-size: 0.5rem;
+			}
+			
+			.container {
+				width: 100%;
+				font-size: 0.4rem;
+			}
+			
+			/*输入框*/
+			.pwd h4 {
+				width: 100%;
+				height: 0.8rem;
+				line-height: 0.8rem;
+				text-align: center;
+			}
+			
+			.pwd .ipt {
+				width: 78%;
+				height: 0.85rem;
+				margin: 0 auto;
+				border: 1px solid #bebebe;
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+			}
+			
+			.pwd .ipt li {
+				width: 16.6666%;
+				height: 100%;
+				border-right: 1px solid #efefef;
+			}
+			
+			.pwd .ipt li:last-of-type {
+				border: none;
+			}
+			
+			.dot {
+				background: url(../images/dot.jpg) no-repeat center;
+				background-size: 0.22rem;
+			}
+			/*键盘*/
+			
+			.keybord {
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				z-index: 1000;
+				border-top: 1px solid #dadada;
+				border-left: 1px solid #dadada;
+			}
+			
+			.keybord div {
+				width: 100%;
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				flex-wrap: wrap;
+				-webkit-flex-wrap: wrap;
+				-ms-flex-wrap: wrap;
+				-moz-flex-wrap: wrap;
+			}
+			
+			.keybord p {
+				width: 33.33%;
+				height: 1rem;
+				line-height: 1rem;
+				border-bottom: 1px solid #dadada;
+				border-right: 1px solid #dadada;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="pwd">
+				<h4>请输入支付密码</h4>
+				<ul class="ipt">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="keybord">
+				<div class="kb"></div>
+				<div>
+					<p class="del">删除</p>
+					<p class="item"></p>
+					<p>确认</p>
+				</div>
+
+			</div>
+		</div>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+		</script>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+
+		<script type="text/javascript">
+			var password = '';
+
+			$(function() {
+				// 定义存放生成随机数的数组 
+				var array = new Array();
+
+				// 循环N次生成随机数 
+				for(var i = 0;; i++) {
+					// 只生成10个随机数 
+					if(array.length < 10) {
+						generateRandom(10);
+					} else {
+						break;
+					}
+				}
+
+				// 循环遍历随机数数组 
+				for(var i = 0; i < array.length - 1; i++) {
+					var p = "<p class='item'>" + array[i] + "</p>";
+
+					$(p).appendTo($(".kb"));
+				}
+
+				$(".item").last().text(array[array.length - 1]);
+
+				// 生成随机数的方法 
+				function generateRandom(count) {
+					var rand = parseInt(Math.random() * count);
+					for(var i = 0; i < array.length; i++) {
+						if(array[i] == rand) {
+							return false;
+						}
+					}
+					array.push(rand);
+				}
+
+				var n = 0;
+				$(".keybord").on("touchstart", ".item", function() {
+
+					var text = $(this).text();
+
+					if(n < 6) {
+						$(".ipt li").eq(n).addClass("dot");
+						n++;
+						password += text;
+						console.log("pwd=====  " + password);
+					} else {
+						// alert("密码已够6位" + password);
+					}
+
+					return false;
+				})
+
+				// 删除
+				$(".del").on("touchstart", function() {
+					if(n > 0) {
+						console.log(n);
+						n--;
+						$(".ipt li").eq(n).removeClass("dot");
+						password = password.substr(0, password.length - 1);
+						console.log("pwd=====  " + password);
+					}
+
+					return false;
+
+				})
+
+			})
+		</script>
+
+	</body>
+</html>

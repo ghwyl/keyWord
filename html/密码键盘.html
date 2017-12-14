@@ -195,7 +195,7 @@
 				<div>
 					<p class="del">删除</p>
 					<p class="item"></p>
-					<p>确认</p>
+					<p class="finish">确认</p>
 				</div>
 
 			</div>
@@ -271,6 +271,13 @@
 
 					return false;
 
+				})
+				
+				// 确认
+				$(".finish").on("touchstart", function(){
+					if(n === 6){
+						alert("Ok!");
+					}
 				})
 
 			})
